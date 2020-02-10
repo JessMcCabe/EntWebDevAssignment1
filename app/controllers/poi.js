@@ -2,7 +2,7 @@
 
 
 
-const Poi = require('../models/poi');
+
 const User = require('../models/user');
 
 const Poi = {
