@@ -6,14 +6,14 @@ const Accounts = {
     index: {
         auth: false,
         handler: function(request, h) {
-            return h.view('main', { title: 'Welcome to Donations' });
+            return h.view('main', { title: 'Welcome to Points of Interest' });
         }
     },
     showSignup: {
         auth: false,
         handler: function(request, h) {
             return h.view('signup',
-                { title: 'Sign up for Donations' });
+                { title: 'Sign up for POI Account' });
         }
     },
     signup: {
@@ -44,7 +44,7 @@ const Accounts = {
     showLogin: {
         auth: false,
         handler: function(request, h) {
-            return h.view('login', { title: 'Login to Donations' });
+            return h.view('login', { title: 'Login to POI Account' });
         }
     },
     login: {
@@ -70,7 +70,7 @@ const Accounts = {
             try {
                 const id = request.auth.credentials.id;
                 const userDetails = await User.findById(id).lean();
-                return h.view('settings', {title: 'Donation Settings', user: userDetails});
+                return h.view('settings', {title: 'POI Account Settings', user: userDetails});
             } catch (err) {
                 return h.view('login', {errors: [{message: err.message}]});
             }
