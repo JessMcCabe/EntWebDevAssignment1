@@ -14,6 +14,8 @@ module.exports = [
     { method: 'POST', path: '/settings',config: Accounts.updateSettings},
 
     { method: 'GET', path: '/home', config: Poi.home },
+    { method: 'GET', path: '/list', config: Poi.list },
+    { method: 'POST', path: '/submit', config: Poi.submit },
     {
         method: 'GET',
         path: '/{param*}',

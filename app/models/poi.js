@@ -6,16 +6,9 @@ const Schema = Mongoose.Schema;
 const poiSchema = new Schema({
     name: String,
     description: String,
-
+    authority: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
-
-
-
-poiSchema.statics.findByName = function(name) {
-    return this.findOne({ name : name});
-};
-
-
-
-
 module.exports = Mongoose.model('Poi', poiSchema);
