@@ -19,12 +19,17 @@ Support the following app features:
 POI Technology Stack:
 
 UI
+
 Handlebars, fomantic ui, jquery
 Components
+
 Handlebars, mongoose,dotenv,mais-mongooseseeder, cloudinary
 Framework
+
 inert,vision,cookie,boom,hapi
 Platforms
+
 node, mongodb, cloudinary
 Infrastructure
+
 heroku, cloudatlas, glitch
