@@ -6,9 +6,15 @@ const Schema = Mongoose.Schema;
 const poiSchema = new Schema({
     name: String,
     description: String,
-    authority: {
+    author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
-});
+    }});
+
+    poiSchema.statics.findByAuthor = function(author){
+        return this.find({author: author});
+
+    };
+
+
 module.exports = Mongoose.model('Poi', poiSchema);
