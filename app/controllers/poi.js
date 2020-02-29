@@ -23,8 +23,8 @@ const POIList = {
         }
     },
     submit: {
-        handler: async function(request, h) {
-            try{
+        handler: async function (request, h) {
+            try {
                 const id = request.auth.credentials.id;
                 const user = await User.findById(id);
                 const data = request.payload;
@@ -35,12 +35,30 @@ const POIList = {
                 });
                 await newPOI.save();
                 return h.redirect('/list');
-            } catch(err){
-                return h.view('main', { errors: [{ message: err.message }] });
+            } catch (err) {
+                return h.view('main', {errors: [{message: err.message}]});
 
             }
         }
-    }
+    },
+
+        deletePOI: {
+            handler: async function (request, h) {
+                try {
+                    const id = request.auth.credentials.id;
+                    const user = await User.findById(id);
+                    const data = request.params;
+                    const POIDelete = POI.findById(data.id);
+                    await POI.deleteOne(POIDelete)
+
+                    return h.redirect('/list');
+                } catch (err) {
+                    return h.view('main', {errors: [{message: err.message}]});
+
+                }
+            }
+        }
+
 
 };
 
