@@ -11,6 +11,11 @@ const poiSchema = new Schema({
         ref: 'User'
     }});
 
+
+poiSchema.statics.findByName = function(name) {
+    return this.findOne({ name : name});
+};
+
     poiSchema.statics.findByAuthor = function(author){
         return this.find({author: author});
 
