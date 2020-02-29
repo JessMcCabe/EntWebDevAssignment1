@@ -13,7 +13,9 @@ const POIList = {
     },
     list: {
         handler: async function(request, h) {
-            const pois = await POI.find().populate('donor').lean();
+            const id = request.auth.credentials.id;
+            const user = await User.findById(id);
+            const pois = await POI.findByAuthor(user._id).populate('donor').lean();
             return h.view('listpois', {
                 title: "POI''s to Date",
                 pois: pois
@@ -29,7 +31,7 @@ const POIList = {
                 const newPOI = new POI({
                     name: data.name,
                     description: data.description,
-                    authority: user._id
+                    author: user._id
                 });
                 await newPOI.save();
                 return h.redirect('/list');
