@@ -15,7 +15,7 @@ const POIList = {
         handler: async function(request, h) {
             const id = request.auth.credentials.id;
             const user = await User.findById(id);
-            const pois = await POI.findByAuthor(user._id).populate('donor').lean();
+            const pois = await POI.findByAuthor(user._id).populate('author').lean();
             return h.view('listpois', {
                 title: "POI''s to Date",
                 pois: pois
