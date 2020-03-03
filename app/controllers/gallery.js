@@ -23,7 +23,7 @@ const Gallery = {
                 const file = request.payload.imagefile;
                 if (Object.keys(file).length > 0) {
                     await ImageStore.uploadImage(request.payload.imagefile);
-                    return h.redirect('/');
+                    return h.redirect('/gallery');
                 }
                 return h.view('gallery', {
                     title: 'Cloudinary Gallery',
@@ -45,7 +45,7 @@ const Gallery = {
         handler: async function(request, h) {
             try {
                 await ImageStore.deleteImage(request.params.id);
-                return h.redirect('/');
+                return h.redirect('/gallery');
             } catch (err) {
                 console.log(err);
             }
