@@ -18,6 +18,7 @@ module.exports = [
     { method: 'GET', path: '/home', config: Poi.home },
     { method: 'GET', path: '/list', config: Poi.list },
     { method: 'POST', path: '/submit', config: Poi.submit },
+    { method: 'GET', path: '/poi/{id}',config: Poi.poiDetails},
 
 
     { method: 'GET', path: '/gallery', config: Gallery.index },
@@ -25,6 +26,7 @@ module.exports = [
     { method: 'GET', path: '/deleteimage/{id}', config: Gallery.deleteImage },
 
     { method: 'GET', path: '/poi/deletePoi/{id}', config: Poi.deletePOI },
+    { method: 'GET', path: '/poi/editPoi/{id}', config: Poi.editPOI },
 
     {
         method: 'GET',

@@ -4,6 +4,7 @@
 
 const POI = require('../models/poi');
 const User = require('../models/user');
+const ImageStore = require('../utils/image-store');
 
 const POIList = {
     home: {
@@ -19,6 +20,20 @@ const POIList = {
             return h.view('listpois', {
                 title: "POI''s to Date",
                 pois: pois
+            });
+        }
+    },
+    poiDetails: {
+        handler: async function(request, h) {
+            const id = request.auth.credentials.id;
+            const user = await User.findById(id);
+            const data = request.params;
+            const poi = await POI.findById(data.id).populate('poi').lean();
+            const image = await ImageStore.getSingleImage(poi.link);
+            return h.view('poiDetail', {
+                title: "POI Details",
+                pois: poi,
+                image: image
             });
         }
     },
@@ -42,14 +57,33 @@ const POIList = {
         }
     },
 
+    editPOI: {
+        handler: async function (request, h) {
+            try {
+                const id = request.auth.credentials.id;
+                const user = await User.findById(id);
+                const idData = request.params;
+                const editPOI = POI.findById(idData.id);
+                const data = request.payload;
+                editPOI.name = data.name;
+                editPOI.description = data.description;
+                await editPOI.save();
+                return h.redirect('/list');
+            } catch (err) {
+                return h.view('main', {errors: [{message: err.message}]});
+
+            }
+        }
+    },
+
         deletePOI: {
             handler: async function (request, h) {
                 try {
                     const id = request.auth.credentials.id;
                     const user = await User.findById(id);
                     const data = request.params;
-                    const POIDelete = POI.findById(data.id);
-                    await POI.deleteOne(POIDelete)
+                    const deletePOI = POI.findById(data.id);
+                    await POI.deleteOne(deletePOI)
 
                     return h.redirect('/list');
                 } catch (err) {
