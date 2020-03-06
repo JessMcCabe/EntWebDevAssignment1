@@ -1,33 +1,25 @@
-<section class="ui raised segment">
-    <div class="ui grid">
-        <aside class="six wide column">
-            <img src="images/main.jpg" class="ui medium image">
-        </aside>
-        <article class="eight wide column">
-            <table class="ui celled table segment">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Author</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each pois}}
-                    <tr>
-                        <td> {{name}} </td>
-                        <td> {{description}} </td>
-                        <td> {{author.firstName}} {{author.lastName}} </td>
-                        <td>
-                            <a href="/poi/deletePoi/{{_id}}"class="ui icon button">
-                                <i class="icon trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </article>
-    </div>
-</section>
+
+    <article class="four wide column">
+    <table class="ui celled table segment">
+        <thead>
+        <tr>
+            <th colspan="1">POI</th>
+            <th></th>
+        </tr>
+        </thead>
+        {{#each pois}}
+    <tbody>
+    <tr>
+        <td>
+            <a href="/poi/{{_id}}">{{name}}</a>
+        </td>
+        <td>
+            <a href="/poi/deletePoi/{{_id}}"class="ui icon button">
+                <i class="icon trash"></i>
+            </a>
+        </td>
+    </tr>
+{{/each}}
+</tbody>
+</table>
+</article>
